@@ -18,7 +18,7 @@ def corpusturkish():
 
     
 def corpusfunctionturkish():
-    turkish_yaz_denet = turkish_yaz.turkish_yaz()
+    turkish_yaz_denet = turkish_yaz.turkish_denet()
     fsm = FsmMorphologicalAnalyzer()
     ngram = NGram("../data/....")
     parameter = SpellCheckerParameter()

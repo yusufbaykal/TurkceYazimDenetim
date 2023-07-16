@@ -13,7 +13,7 @@ from SpellChecker.SpellCheckerParameter import SpellCheckerParameter
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
 
 
-class turkish_yaz():
+class turkish_denet:
     nGram = NGram('../data/ngram.txt')
     def __init__(self, text=""):
         self.fsm = FsmMorphologicalAnalyzer()
