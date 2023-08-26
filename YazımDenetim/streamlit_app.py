@@ -122,19 +122,20 @@ def yazim_denetimi():
     )
 
     text = st.text_area("Metin Girin")
-    if text:
-        text = denetci.NgramYazimKontrolu()
-        text = denetci.kisaltmakontrol()
-        text = denetci.keliekontrol()
-        text = denetci.kucukHarfeDonustur()
-        text = denetci.noktalamaTemizleyicisi()
-        text = denetci.noktalama_ekle()
-        text = denetci.buyukharf()
+    if st.button("Denetle"):
+        if text:
+            text = denetci.NgramYazimKontrolu()
+            text = denetci.kisaltmakontrol()
+            text = denetci.keliekontrol()
+            text = denetci.kucukHarfeDonustur()
+            text = denetci.noktalamaTemizleyicisi()
+            text = denetci.noktalama_ekle()
+            text = denetci.buyukharf()
 
-        st.write("Denetleme Sonucu")
-        st.write(text)
-    else:
-        st.warning("Metin Girişi Gerçekleştirmediniz.")
+            st.write("Denetleme Sonucu")
+            st.write(text)
+        else:
+            st.warning("Metin Girişi Gerçekleştirmediniz.")
 
 
 if __name__ == '__main__':
