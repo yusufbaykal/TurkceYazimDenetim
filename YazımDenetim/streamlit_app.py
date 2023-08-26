@@ -1,11 +1,9 @@
 import streamlit as st
 from streamlit_tags import st_tags
-import turkish_yaz
-import turkish_nlp_preprocessing
-turkish_yaz_func = turkish_yaz.turkish_denet
-turkish_nlp = turkish_nlp_preprocessing.TurkishNLP
-
-
+from turkish_yaz import turkish_denet
+from turkish_nlp_preprocessing import TurkishNLP
+denetci = turkish_denet()
+turknlp = TurkishNLP()
 st.set_page_config(
     layout="centered", page_title="Türkçe Yazım Denetim", page_icon="❄️"
 )
@@ -64,34 +62,32 @@ def turkish_data_preprocessing():
     selected_menu = st.sidebar.selectbox("İşlem Seçiniz", menu)
 
     text = st.text_area("Metin Girin")
-
-
     if st.button("Denetle"):
         if text:
             if selected_menu == "Kısaltma Kontrol":
-                text = turkish_yaz_func.kisaltmakontrol(text)
+                text = denetci.kisaltmakontrol()
             elif selected_menu == "Kelime Kontrol":
-                text = turkish_yaz_func.kelimekontrol(text)
+                text = denetci.kelimekontrol()
             elif selected_menu == "Noktalama İşareti Ekle":
-                text = turkish_yaz_func.noktalama_ekle(text)
+                text = denetci.noktalama_ekle()
             elif selected_menu == "Yazım Denetimi":
-                text = turkish_yaz_func.NgramYazimKontrolu(text)
+                text = denetci.NgramYazimKontrolu()
             elif selected_menu == "HTML Etiketleri Temizleme":
-                text = turkish_nlp.htmlEtiketleriniKaldir(text)
+                text = denetci.htmlEtiketleriniKaldir()
             elif selected_menu == "En Çok Kullanılan Kelimeler":
-                text = turkish_nlp.enCokKelime(text)
+                text = denetci.enCokKelime()
             elif selected_menu == "Alfa-Numeric":
-                text = turkish_nlp.alfaNumerik(text)
+                text = denetci.alfaNumerik()
             elif selected_menu == "Harf Dönüşümü":
-                text = turkish_nlp.harfDonusum(text)
+                text = turknlp.harfDonusum()
             elif selected_menu == "Türkçe Karakter Olmayan":
-                text = turkish_nlp.turkceKarakter(text)
+                text = turknlp.turkceKarakter()
             elif selected_menu == "Noktalama İşareti Kaldır":
-                text = turkish_nlp.noktalamaTemizleyicisi(text)
+                text = turknlp.noktalamaTemizleyicisi()
             elif selected_menu == "Stop-Words Kaldır":
-                text = turkish_nlp.stopKelimeleriKaldir(text)
+                text = turknlp.stopKelimeleriKaldir()
             elif selected_menu == "Kelime İstatistikleri":
-                text = turkish_nlp.kelimeSayici(text)
+                text = turknlp.kelimeSayici()
                 kelimeSayisi = text['kelimeSayisi']
                 karakterSayisi = text['karakterSayisi']
                 benzersizKelimeSayisi = text['benzersizKelimeSayisi']
@@ -104,6 +100,7 @@ def turkish_data_preprocessing():
             st.warning("Metin Girişi Gerçekleştirmediniz.")
 
     return
+
 
 
 def yazim_denetimi():
@@ -123,22 +120,21 @@ def yazim_denetimi():
         """,
         unsafe_allow_html=True,
     )
+
     text = st.text_area("Metin Girin")
+    if text:
+        text = denetci.NgramYazimKontrolu()
+        text = denetci.kisaltmakontrol()
+        text = denetci.keliekontrol()
+        text = denetci.kucukHarfeDonustur()
+        text = denetci.noktalamaTemizleyicisi()
+        text = denetci.noktalama_ekle()
+        text = denetci.buyukharf()
 
-    if st.button("Denetle"):
-        if text:
-            text = turkish_yaz_func.kisaltmakontrol(text)
-            text = turkish_yaz_func.NgramYazimKontrolu(text)
-            text = turkish_yaz_func.kelimekontrol(text)
-            text = turkish_yaz_func.kucukHarfeDonustur(text)
-            text = turkish_yaz_func.noktalamaTemizleyicisi(text)
-            text = turkish_yaz_func.noktalama_ekle(text)
-            text = turkish_yaz_func.buyukharf(text)
-
-            st.write("Denetleme Sonucu")
-            st.write(text)
-        else:
-            st.warning("Metin Girişi Gerçekleştirmediniz.")
+        st.write("Denetleme Sonucu")
+        st.write(text)
+    else:
+        st.warning("Metin Girişi Gerçekleştirmediniz.")
 
 
 if __name__ == '__main__':

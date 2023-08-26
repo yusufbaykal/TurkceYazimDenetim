@@ -19,6 +19,7 @@ class turkish_denet:
         self.fsm = FsmMorphologicalAnalyzer()
         self.parameter = SpellCheckerParameter()
         self.nGram = NGram("../data/ngram.txt")
+        self.text = text
         self.searchfile = open("../data/VERB_TS_Corpus_Frequency_List.txt", "r", encoding="utf8")
         self.nGram.calculateNGramProbabilitiesSimple(NoSmoothing())
         self.trieSpellChecker = TrieBasedSpellChecker(self.fsm, self.nGram, self.parameter)
@@ -26,7 +27,8 @@ class turkish_denet:
         self.turkcekelime = []
 
 
-    def kisaltmakontrol(self, text):
+
+    def kisaltmakontrol(self,text):
         kisaltList = listeler.kisaltList
         uzunhaller = listeler.uzunhaller
         words = text.split()
@@ -36,7 +38,7 @@ class turkish_denet:
                 words[i] = uzunhaller[index]
         result = " ".join(words)
         result = " ".join(result.split())
-        return result
+        return text
 
     def kelimekontrol(self, text):
         kelimeler = set(self.turkcekelime)
@@ -114,8 +116,8 @@ class turkish_denet:
         return self.trieSpellChecker.spellCheck (Sentence (text)).toString ()
 
     def NgramYazimKontrolu(self, text):
-        return self.nGramSpellChecker.spellCheck(Sentence(text)).toString()
-
+        self.nGramSpellChecker.spellCheck(Sentence(text)).toString()
+        return text
     """def noktalama_ekle(self,text):
         kelimeler = text.split()
         baglaclar = listeler.baglaclar
@@ -190,12 +192,6 @@ class turkish_denet:
 
         buyukharf = ' '.join(capitalized_words)
         return buyukharf
-
-    """def textread(self,text):
-        kelime = text.split()
-        textlist = []
-        for i in textlist:
-            testlist.append()"""
 
 
 

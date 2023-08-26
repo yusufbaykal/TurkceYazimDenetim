@@ -6,6 +6,7 @@ import re
 import timeit
 from IPython.display import Image
 import spacy
+import listeler
 
 class TurkishNLP():
     def enCokKelime(self,text):
@@ -47,7 +48,7 @@ class TurkishNLP():
         def kucukHarfeDonustur(text):
             return text.lower()
 
-        def noktalamaIsaretleriniKaldir(text):
+        def noktalamaIsaretleriniKaldir(self,text):
             return re.sub(r'[^\w\s]', '', text)
 
         text = re.sub(r"\n", " ", text)
@@ -85,4 +86,16 @@ class TurkishNLP():
         soup = BeautifulSoup(html, 'html.parser')
         text = soup.get_text(" ")
         return text
+
+    def kisaltmakontrol(self, text):
+        kisaltList = listeler.kisaltList
+        uzunhaller = listeler.uzunhaller
+        words = text.split()
+        for i in range(len(words)):
+            if words[i] in kisaltList:
+                index = kisaltList.index(words[i])
+                words[i] = uzunhaller[index]
+        result = " ".join(words)
+        result = " ".join(result.split())
+        return result
 
