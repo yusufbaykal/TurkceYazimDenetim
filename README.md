@@ -1,9 +1,9 @@
 # Turkish SpellChecker
 
 
-<p align="center">
-  <img width="400" height="200" src="./Images/image.jpg"/>
-</p>
+<div align="center" style="margin-top: 20px;">
+  <img src="./Images/image.jpg">
+</div>
 
 
 
