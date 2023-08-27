@@ -1,5 +1,12 @@
 # Turkish SpellChecker
 
+
+<p align="center">
+  <img width="600" height="500" src="./Images/image.jpg"/>
+</p>
+
+
+
 ### TR
 
 
