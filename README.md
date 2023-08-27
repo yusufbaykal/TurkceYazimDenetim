@@ -16,21 +16,18 @@ In order to work on code, create a fork from GitHub page. Use Git for cloning th
 
 ```
 git clone  https://github.com/yusufbaykal/TurkceYazimDenetim.git
-
 ```
 
 Go to the project directory
 
 ```
 cd TurkceYazimDenetim
-
 ```
 Install the required packages
 
 
 ```
 pip install setup.py
-
 ```
 
 ### Streamlit Run
