@@ -1,7 +1,7 @@
 # Turkish SpellChecker
 
 
-<div align="center" style="margin-top: 20px;">
+<div align="center" style="margin-top: 50px;">
   <img src="./Images/image.jpg">
 </div>
 
