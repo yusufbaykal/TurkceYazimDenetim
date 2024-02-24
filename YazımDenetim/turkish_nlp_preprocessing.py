@@ -6,7 +6,7 @@ import re
 import timeit
 from IPython.display import Image
 import spacy
-import listeler
+from YazımDenetim import listeler
 
 class TurkishNLP():
     def enCokKelime(self,text):
@@ -45,18 +45,6 @@ class TurkishNLP():
         return text
 
     def kelimeSayici(self,text):
-        def kucukHarfeDonustur(text):
-            return text.lower()
-
-        def noktalamaIsaretleriniKaldir(self,text):
-            return re.sub(r'[^\w\s]', '', text)
-
-        text = re.sub(r"\n", " ", text)
-        text = re.sub(r"  ", " ", text)
-
-        text = re.sub(r"I", "ı", text)
-        text = kucukHarfeDonustur(text)
-        text = noktalamaIsaretleriniKaldir(text)
 
         kelimeler = text.split(" ")
         kelimeSayisi = len(kelimeler)
@@ -70,6 +58,19 @@ class TurkishNLP():
             'benzersizKelimeSayisi': benzersizKelimeSayisi,
             'benzersizKelimeler': benzersizKelimeler
         }
+        def kucukHarfeDonustur(text):
+            return text.lower()
+
+        def noktalamaIsaretleriniKaldir(self,text):
+            return re.sub(r'[^\w\s]', '', text)
+
+        text = re.sub(r"\n", " ", text)
+        text = re.sub(r"  ", " ", text)
+
+        text = re.sub(r"I", "ı", text)
+        text = kucukHarfeDonustur(text)
+        text = noktalamaIsaretleriniKaldir(text)
+
 
     def noktalamaTemizleyicisi(self,text):
         regex = r"(?<!\d)[.,;:?)(](?!\d)"

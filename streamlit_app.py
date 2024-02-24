@@ -1,7 +1,12 @@
+import sys
+
+sys.path.append("/path/to/YazımDenetim")
+
 import streamlit as st
-from streamlit_tags import st_tags
 from YazımDenetim.turkish_yaz import turkish_denet
 from YazımDenetim.turkish_nlp_preprocessing import TurkishNLP
+from YazımDenetim import listeler
+
 denetci = turkish_denet()
 turknlp = TurkishNLP()
 st.set_page_config(

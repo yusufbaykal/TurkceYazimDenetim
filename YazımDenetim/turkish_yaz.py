@@ -1,7 +1,7 @@
 import re
 import locale
 import Corpus
-import listeler
+from YazımDenetim import listeler
 from NGram.NGram import NGram
 from Dictionary.Word import Word
 from Corpus.Sentence import Sentence
@@ -14,13 +14,13 @@ from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnaly
 
 
 class turkish_denet:
-    nGram = NGram('../data/ngram.txt')
+    nGram = NGram('./data/ngram.txt')
     def __init__(self, text=""):
         self.fsm = FsmMorphologicalAnalyzer()
         self.parameter = SpellCheckerParameter()
-        self.nGram = NGram("../data/ngram.txt")
+        self.nGram = NGram("./data/ngram.txt")
         self.text = text
-        self.searchfile = open("../data/VERB_TS_Corpus_Frequency_List.txt", "r", encoding="utf8")
+        self.searchfile = open("./data/VERB_TS_Corpus_Frequency_List.txt", "r", encoding="utf8")
         self.nGram.calculateNGramProbabilitiesSimple(NoSmoothing())
         self.trieSpellChecker = TrieBasedSpellChecker(self.fsm, self.nGram, self.parameter)
         self.nGramSpellChecker = NGramSpellChecker(self.fsm, self.nGram, self.parameter)
@@ -48,29 +48,29 @@ class turkish_denet:
         turkish_word = set()
 
 
-        with open("../data/generated_words.txt", "r", encoding="utf-8") as file:
+        with open("./data/generated_words.txt", "r", encoding="utf-8") as file:
             for line in file:
                 generated_words.add(line.strip())
 
 
-        with open("../data/turkish_dictionary.txt", "r", encoding="utf-8") as file:
+        with open("./data/turkish_dictionary.txt", "r", encoding="utf-8") as file:
             for line in file:
                 self.turkcekelime.append(line.strip())
 
 
-        with open("../data/turkish_misspellings.txt", "r", encoding="utf-8") as file:
+        with open("./data/turkish_misspellings.txt", "r", encoding="utf-8") as file:
             for line in file:
                 correct_word, misspelled_word = line.strip().split()
                 misspellings[misspelled_word] = correct_word
 
 
-        with open("../data/turkish_words.txt","r",encoding="utf-8") as file:
+        with open("./data/turkish_words.txt","r",encoding="utf-8") as file:
             for line in file:
                 turkish_word.add(line.strip())
 
 
 
-        with open("../data/context_list.txt", "r", encoding="utf-8") as file:
+        with open("./data/context_list.txt", "r", encoding="utf-8") as file:
             for line in file:
                 context_list.append(line.strip())
 
@@ -97,7 +97,7 @@ class turkish_denet:
                 filtered_text = filtered_text.replace(context, "")
 
 
-        with open("../data/filtered_text.txt", "w", encoding="utf-8") as file:
+        with open("./data/filtered_text.txt", "w", encoding="utf-8") as file:
             file.write(filtered_text)
 
         return filtered_text
@@ -116,7 +116,7 @@ class turkish_denet:
         return self.trieSpellChecker.spellCheck (Sentence (text)).toString ()
 
     def NgramYazimKontrolu(self, text):
-        self.nGramSpellChecker.spellCheck(Sentence(text)).toString()
+        self.nGramSpellChecker.spellCheck(Sentence(text))
         return text
     """def noktalama_ekle(self,text):
         kelimeler = text.split()
@@ -149,7 +149,7 @@ class turkish_denet:
         return yeni_metin.strip()"""
 
     def noktalama_ekle(self, text):
-        with open('../data/turkish_dictionary.txt', 'r', encoding='utf-8') as file:
+        with open('./data/turkish_dictionary.txt', 'r', encoding='utf-8') as file:
             dictionary = {}
             for line in file:
                 word, tags = line.strip().split(' ', 1)
