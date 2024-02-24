@@ -16,7 +16,7 @@ from SpellChecker.SpellCheckerParameter import SpellCheckerParameter
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
 
 
-class turkish_denet:
+class turkish_denet():
     nGram = NGram('./data/ngram.txt')
     def __init__(self, text=""):
         self.fsm = FsmMorphologicalAnalyzer()
@@ -24,7 +24,6 @@ class turkish_denet:
         self.nGram = NGram("./data/ngram.txt")
         self.text = text
         self.searchfile = open("./data/VERB_TS_Corpus_Frequency_List.txt", "r", encoding="utf8")
-        self.nGram.calculateNGramProbabilitiesSimple(NoSmoothing())
         self.trieSpellChecker = TrieBasedSpellChecker(self.fsm, self.nGram, self.parameter)
         self.nGramSpellChecker = NGramSpellChecker(self.fsm, self.nGram, self.parameter)
         self.turkcekelime = []

@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append("C:/Users/yusuf/Desktop/TurkceYazimDenetim/YazımDenetim")
 
 import streamlit as st
@@ -17,7 +18,7 @@ def main():
     c1, c2 = st.columns([0.30, 2])
     with c1:
         st.image(
-                "../Images/logo.png",
+                "./Images/logo.png",
                 width=95,
             )
     with c2:
@@ -77,11 +78,11 @@ def turkish_data_preprocessing():
             elif selected_menu == "Yazım Denetimi":
                 text = denetci.NgramYazimKontrolu()
             elif selected_menu == "HTML Etiketleri Temizleme":
-                text = denetci.htmlEtiketleriniKaldir()
+                text = turknlp.htmlEtiketleriniKaldir()
             elif selected_menu == "En Çok Kullanılan Kelimeler":
-                text = denetci.enCokKelime()
+                text = turknlp.enCokKelime()
             elif selected_menu == "Alfa-Numeric":
-                text = denetci.alfaNumerik()
+                text = turknlp.alfaNumerik()
             elif selected_menu == "Harf Dönüşümü":
                 text = turknlp.harfDonusum()
             elif selected_menu == "Türkçe Karakter Olmayan":
@@ -130,7 +131,7 @@ def yazim_denetimi():
         if text:
             text = denetci.NgramYazimKontrolu()
             text = denetci.kisaltmakontrol()
-            text = denetci.keliekontrol()
+            text = denetci.kelimekontrol()
             text = denetci.kucukHarfeDonustur()
             text = denetci.noktalamaTemizleyicisi()
             text = denetci.noktalama_ekle()
