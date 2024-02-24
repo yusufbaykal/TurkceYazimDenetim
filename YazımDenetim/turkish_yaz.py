@@ -1,7 +1,7 @@
 import re
 import locale
 import Corpus
-import listeler
+from YazımDenetim import listeler
 from NGram.NGram import NGram
 from Dictionary.Word import Word
 from Corpus.Sentence import Sentence
