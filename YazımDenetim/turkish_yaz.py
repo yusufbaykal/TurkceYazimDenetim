@@ -1,8 +1,11 @@
+import sys
+sys.path.append("/path/to/SpellChecker")
+
 import re
 import locale
 import Corpus
 from YazımDenetim import listeler
-from NGram.NGram import NGram
+import NGram
 from Dictionary.Word import Word
 from Corpus.Sentence import Sentence
 from NGram.NoSmoothing import NoSmoothing
