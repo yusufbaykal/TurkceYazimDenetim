@@ -1,6 +1,5 @@
 import sys
-
-sys.path.append("/path/to/YazımDenetim")
+sys.path.append("C:/Users/yusuf/Desktop/TurkceYazimDenetim/YazımDenetim")
 
 import streamlit as st
 from YazımDenetim.turkish_yaz import turkish_denet

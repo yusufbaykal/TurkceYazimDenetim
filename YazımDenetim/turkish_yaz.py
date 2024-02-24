@@ -5,7 +5,7 @@ import re
 import locale
 import Corpus
 from YazımDenetim import listeler
-import NGram
+from ngram import NGram
 from Dictionary.Word import Word
 from Corpus.Sentence import Sentence
 from NGram.NoSmoothing import NoSmoothing
