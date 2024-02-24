@@ -34,7 +34,7 @@ class ContextBasedSpellChecker(NGramSpellChecker):
         This method also loads context information from a file.
         """
         self.__context_list = {}
-        input_file = self.getFile('../data/context_list.txt')
+        input_file = self.getFile('context_list.txt')
         lines = input_file.readlines()
         for line in lines:
             items = line.strip().split("\t")

@@ -1,7 +1,7 @@
 import re
 from random import randrange
 from typing import IO
-
+import os
 import pkg_resources
 from Corpus.Sentence import Sentence
 from Dictionary.TxtWord import TxtWord
@@ -58,12 +58,8 @@ class SimpleSpellChecker(SpellChecker):
         self.loadDictionaries()
 
     def getFile(self, file_name: str) -> IO:
-        if len(self.parameter.getDomain()) == 0:
-            return open(file_name, "r", encoding="utf8")
-        else:
-            domain_file_name = self.parameter.getDomain() + "_" + file_name
-            return open(domain_file_name, "r", encoding="utf8")
-
+        file_path = os.path.join(r"C:\Users\yusuf\Desktop\TurkceYazimDenetim\SpellChecker\data", file_name)
+        return open(file_path, "r", encoding="utf8")
     def __generateCandidateList(self, word: str) -> list:
         """
         The generateCandidateList method takes a String as an input. Firstly, it creates a String consists of lowercase
@@ -471,16 +467,13 @@ class SimpleSpellChecker(SpellChecker):
         return False
 
     def loadDictionaries(self):
-        """
-        Loads the merged and split lists from the specified files.
-        """
-        input_file = self.getFile('../data//merged.txt')
+        input_file = self.getFile('merged.txt')
         lines = input_file.readlines()
         for line in lines:
             items = line.strip().split(" ")
             self.__merged_words[items[0] + " " + items[1]] = items[2]
         input_file.close()
-        input_file = self.getFile('../data/split.txt')
+        input_file = self.getFile('split.txt')
         lines = input_file.readlines()
         for line in lines:
             index = line.strip().index(' ')

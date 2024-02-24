@@ -40,7 +40,7 @@ class TrieBasedSpellChecker(NGramSpellChecker):
         This method also loads generated words from a file.
         """
         self.__generated_words = []
-        input_file = self.getFile('../data/generated_words.txt')
+        input_file = self.getFile('generated_words.txt')
         lines = input_file.readlines()
         for line in lines:
             self.__generated_words.append(line.strip())
